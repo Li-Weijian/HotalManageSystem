@@ -6,6 +6,7 @@
 #define ROOM_MAX 10
 
 int welcome();					//欢迎界面
+void allRoom();					//显示所有房间
 void seek();					//查询管理总模块
 void cheak_in();				//入住模块
 void hotalType(int *, int *);	//旅馆类型
@@ -60,11 +61,12 @@ int main(void)
 		choice = welcome();
 		switch (choice)
 		{
-		case 1:cheak_in(); break;
-		case 2:seek(); break;
-		case 3://更换房间
-		case 4://退房管理
-		case 5:printf("感谢使用本系统！祝生活愉快！\n");
+		case 1:allRoom();break;
+		case 2:cheak_in(); break;
+		case 3:seek(); break;
+		case 4://更换房间
+		case 5://退房管理
+		case 6:printf("感谢使用本系统！祝生活愉快！\n");
 			system("pause");
 			exit(EXIT_SUCCESS);
 
@@ -314,16 +316,17 @@ int welcome()						//欢迎界面
 
 	printf("\t\t欢迎使用小建旅馆管理系统\n");
 	printf("\t\t\t|--------------------|\n");
-	printf("\t\t\t|-----1.入住管理-----|\n");
-	printf("\t\t\t|-----2.查询管理-----|\n");
-	printf("\t\t\t|-----3.更换房间-----|\n");
-	printf("\t\t\t|-----4.退房管理-----|\n");
-	printf("\t\t\t|-----5.退出系统-----|\n");
+	printf("\t\t\t|-----1.所有房间-----|\n");
+	printf("\t\t\t|-----2.入住管理-----|\n");
+	printf("\t\t\t|-----3.查询管理-----|\n");
+	printf("\t\t\t|-----4.更换房间-----|\n");
+	printf("\t\t\t|-----5.退房管理-----|\n");
+	printf("\t\t\t|-----6.退出系统-----|\n");
 	printf("\t\t\t|--------------------|\n");
 	printf("请选择对应序号进行操作：");
 	scanf("%d", &choice);
 
-	while (choice > 5 && choice < 1)
+	while (choice > 6 && choice < 1)
 	{
 		printf("选项错误！请重新选择！\n");
 		scanf("%d", &choice);
@@ -367,4 +370,22 @@ void seek()						//查询管理总模块
 			break;
 		}
 	} while (choice != 5);
+}
+
+void allRoom()					//显示所有房间
+{
+	char ch;
+	printf("\t\t\t----类型------价格------剩余房间------|\n");
+	printf("\t\t\t1.--%s------ %d ------   %d   ------|\n", room.small_room, room.small_price, room.small_count);
+	printf("\t\t\t2.--%s------ %d ------  %d   ------|\n", room.medium_room, room.medium_price, room.medium_count);
+	printf("\t\t\t3.--%s------ %d ------  %d   ------|\n", room.big_room, room.big_price, room.big_count);
+	printf("\t\t\t4.--%s---- %d ------   %d   ------|\n", room.luxu_room, room.luxu_price, room.luxu_count);
+	printf("请问是否入住(是输入Y),返回主菜单请按任意键：");
+	getchar();			//过滤回车
+	ch = getchar();
+	getchar();
+
+	if (ch == 'y' || ch == 'Y')
+		cheak_in();
+
 }
