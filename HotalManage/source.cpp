@@ -33,7 +33,7 @@ struct Room
 	char luxu_room[ROOM_MAX] = { "豪华房" };
 	int luxu_price = 200;
 	int luxu_count = 5;
-};
+}room;
 
 typedef struct hotal
 {
@@ -85,7 +85,6 @@ void cheak_in()							//入住模块
 	int person;
 	int roomCount;						//定义两个指针变量供hotalType函数操作
 	int roomType;
-	Room room;
 	Hotal* pNew;
 	Hotal* pTemp = photal;
 	bool flat = true;					//此变量为判断while循环的标志
@@ -292,8 +291,6 @@ void RoomChange(int id, int NewRoom)	//更换房间模块
 
 void hotalType(int *roomType, int *roomCount)		//旅馆类型
 {
-	Room room;
-
 	printf("\t\t\t----类型------价格------剩余房间------|\n");
 	printf("\t\t\t1.--%s------ %d ------   %d   ------|\n", room.small_room, room.small_price, room.small_count);
 	printf("\t\t\t2.--%s------ %d ------  %d   ------|\n", room.medium_room, room.medium_price, room.medium_count);
